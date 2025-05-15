@@ -53,7 +53,7 @@ int main() {
     // Calculate duration in seconds
     duration = ((double)(stop - start)) / CLOCKS_PER_SEC;
 
-    // Print the time taken to sort the array
+ 
     printf("\nSorting Time: %f seconds\n", duration);
 
     return 0;
