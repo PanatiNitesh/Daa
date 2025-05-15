@@ -40,21 +40,13 @@ int main() {
 
     clock_t start, stop;
     double duration;
-
     // Record start time before sorting
     start = clock();
-
     // Call selection sort function
     selection_sort(array, n);
-
     // Record stop time after sorting
     stop = clock();
-
- 
     duration = ((double)(stop - start)) / CLOCKS_PER_SEC;
-
- 
     printf("\nSorting Time: %f seconds\n", duration);
-
     return 0;
 }
