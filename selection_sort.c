@@ -50,7 +50,7 @@ int main() {
     // Record stop time after sorting
     stop = clock();
 
-    // Calculate duration in seconds
+ 
     duration = ((double)(stop - start)) / CLOCKS_PER_SEC;
 
  
