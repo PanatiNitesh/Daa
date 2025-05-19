@@ -1,4 +1,4 @@
-//////
+//
 #include<stdio.h>
 #include<conio.h>
 
@@ -39,3 +39,4 @@ cost[a][b]=cost[b][a]=999;
 printf("\n Minimun cost=%d",mincost); 
 getch();
 }
+//
