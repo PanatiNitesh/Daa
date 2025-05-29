@@ -1,72 +1,68 @@
+//Dijkstra’s Algorithm
+
 #include <stdio.h>
 #define MAX 10
-#define INF 999
+#define INF 9999
 
-int a[MAX][MAX], d[MAX], n;
+int a[MAX][MAX], d[MAX], visited[MAX], n;
 
-// Function to extract the vertex with the minimum distance
-int Extract_Min(int S[]) {
-    int i, j = -1, min = INF;
+void Dijkstra(int start) {
+    int i, j, u, min;
+
     for (i = 1; i <= n; i++) {
-        if ((d[i] < min) && (!S[i])) {
-            min = d[i];
-            j = i;
+        d[i] = a[start][i];      // Initialize distances from start
+        visited[i] = 0;          // Mark all nodes as unvisited
+    }
+
+    d[start] = 0;                // Distance to itself is 0
+    visited[start] = 1;          // Mark starting node as visited
+
+    for (i = 1; i < n; i++) {
+        min = INF;
+        u = -1;
+
+        // Find the unvisited vertex with the smallest distance
+        for (j = 1; j <= n; j++) {
+            if (!visited[j] && d[j] < min) {
+                min = d[j];
+                u = j;
+            }
         }
-    }
-    return j;
-}
 
-// Dijkstra's Algorithm
-void Dijkstras(int s) {
-    int S[MAX] = {0};
-    int u, v;
+        visited[u] = 1;
 
-    for (int i = 1; i <= n; i++) {
-        d[i] = a[s][i]; // initialize distance
-    }
-    S[s] = 1;
-    d[s] = 0;
-
-    for (int count = 2; count <= n; count++) {
-        u = Extract_Min(S);
-        if (u == -1) break; // No reachable vertex
-        S[u] = 1;
-
-        for (v = 1; v <= n; v++) {
-            if (!S[v] && a[u][v] != INF && d[u] + a[u][v] < d[v]) {
-                d[v] = d[u] + a[u][v];
+        // Update distances to adjacent vertices
+        for (j = 1; j <= n; j++) {
+            if (!visited[j] && d[u] + a[u][j] < d[j]) {
+                d[j] = d[u] + a[u][j];
             }
         }
     }
 
-    printf("\nShortest distances from vertex %d:\n", s);
-    for (int i = 1; i <= n; i++) {
-        if (i != s) {
-            if (d[i] == INF)
-                printf("%d: Unreachable\n", i);
-            else
-                printf("%d: %d\n", i, d[i]);
-        }
+    // Print shortest distances
+    printf("\nShortest distances from vertex %d:\n", start);
+    for (i = 1; i <= n; i++) {
+        if (i != start)
+            printf("To vertex %d: %d\n", i, d[i]);
     }
 }
 
-// Main function
-int main() {
-    int s;
+void main() {
+    int i, j, start;
     printf("Enter number of vertices: ");
     scanf("%d", &n);
 
-    printf("Enter adjacency matrix (999 for no direct edge):\n");
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
+    printf("Enter the adjacency matrix (0 for no edge):\n");
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
             scanf("%d", &a[i][j]);
+            if (a[i][j] == 0 && i != j)
+                a[i][j] = INF;  // No edge is treated as INF
         }
     }
 
     printf("Enter starting vertex: ");
-    scanf("%d", &s);
+    scanf("%d", &start);
 
-    Dijkstras(s);
-
-    return 0;
+    Dijkstra(start);
 }
