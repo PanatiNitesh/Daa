@@ -1,4 +1,4 @@
-//Dijkstra’s Algorithm
+//Dijkstra’s
 
 #include <stdio.h>
 #define MAX 10
