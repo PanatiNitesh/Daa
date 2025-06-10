@@ -21,7 +21,7 @@ void Dijkstra(int start) {
         min = INF;
         u = -1;
 
-        // Find the unvisited vertex with the smallest distance
+        // Find the unvisited vertex
         for (j = 1; j <= n; j++) {
             if (!visited[j] && d[j] < min) {
                 min = d[j];
