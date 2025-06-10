@@ -26,7 +26,7 @@ int main() {
     printf("Enter knapsack capacity: ");
     scanf("%f", &capacity);
 
-    // Sort
+    // 
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
             if (ratio[i] < ratio[j]) {
